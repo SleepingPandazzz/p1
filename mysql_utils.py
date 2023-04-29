@@ -23,12 +23,31 @@ class MysqlUtils:
     result = cursor.fetchall()
     cursor.close()
     return result
-  
+
+  def execute_query_for_table_without_value(self, query):
+    cursor = self.connection.cursor()
+    cursor.execute(query)
+    data = cursor.fetchall()
+    table = pd.DataFrame(data, columns=cursor.column_names)
+    cursor.close()
+    return table
+
   def execute_query_for_table(self, query, value):
     cursor = self.connection.cursor()
     cursor.execute(query, (value, ))
     data = cursor.fetchall()
-    # table = pd.DataFrame(data, columns=[col[0] for col in cursor.description])
     table = pd.DataFrame(data, columns=cursor.column_names)
     cursor.close()
     return table
+  
+  def insert(self, query, value):
+    cursor = self.connection.cursor()
+    cursor.execute(query, value)
+    self.connection.commit()
+    cursor.close()
+  
+  def update(self, query, value):
+    cursor = self.connection.cursor()
+    cursor.execute(query, value)
+    self.connection.commit()
+    cursor.close()
