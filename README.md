@@ -2,8 +2,7 @@ Title: Explore Keywords
 
 Purpose: The application is designed to help students who are looking for Master/PhD programs to find a faculty that fits their interests and goals.
 
-Demo: 
-
+Demo: https://mediaspace.illinois.edu/media/t/1_azkn0814
 
 Installation:
 
